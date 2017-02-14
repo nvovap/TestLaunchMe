@@ -51,7 +51,7 @@
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QhT-wj-K5b">
-                                <rect key="frame" x="83.5" y="526" width="266.5" height="31"/>
+                                <rect key="frame" x="86" y="526" width="264" height="31"/>
                                 <connections>
                                     <action selector="changeColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="mUK-Th-zlb"/>
                                 </connections>
@@ -60,6 +60,12 @@
                                 <rect key="frame" x="86" y="564" width="264" height="31"/>
                                 <connections>
                                     <action selector="changeGreenColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="sUP-am-T7a"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cNU-8u-ZWQ">
+                                <rect key="frame" x="86" y="602" width="262.5" height="31"/>
+                                <connections>
+                                    <action selector="changeBlueColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="fJN-oP-3k1"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tA-IH-01i">
@@ -80,19 +86,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cNU-8u-ZWQ">
-                                <rect key="frame" x="86" y="602" width="262.5" height="31"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HCL-Jq-ANy">
+                                <rect key="frame" x="66" y="92" width="227" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="xGT-22-TDh"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="changeBlueColor:" destination="BYZ-38-t0r" eventType="valueChanged" id="fJN-oP-3k1"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="sK8-lm-IcM"/>
                                 </connections>
-                            </slider>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="0tA-IH-01i" secondAttribute="leading" id="3pZ-1A-0QU"/>
+                            <constraint firstItem="er4-zd-K9d" firstAttribute="leading" secondItem="j3e-Zf-IGS" secondAttribute="trailing" constant="21" id="3uq-xo-R8u"/>
+                            <constraint firstItem="QhT-wj-K5b" firstAttribute="leading" secondItem="0tA-IH-01i" secondAttribute="trailing" constant="37.5" id="51W-bP-Dwx"/>
                             <constraint firstItem="j3e-Zf-IGS" firstAttribute="centerY" secondItem="er4-zd-K9d" secondAttribute="centerY" id="6dQ-Jp-U57"/>
                             <constraint firstItem="b7C-v4-s1x" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Hw-jQ-r9V"/>
-                            <constraint firstItem="er4-zd-K9d" firstAttribute="leading" secondItem="j3e-Zf-IGS" secondAttribute="trailing" constant="21" id="EaB-b2-MwB"/>
+                            <constraint firstItem="cNU-8u-ZWQ" firstAttribute="leading" secondItem="0TQ-i2-5Zf" secondAttribute="trailing" constant="33.5" id="9dr-mS-HHi"/>
+                            <constraint firstItem="HCL-Jq-ANy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-8" id="Eru-gk-sjD"/>
                             <constraint firstItem="cNU-8u-ZWQ" firstAttribute="top" secondItem="er4-zd-K9d" secondAttribute="bottom" constant="8" id="HrO-3i-SYF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QhT-wj-K5b" secondAttribute="trailing" constant="11" id="Jhe-H3-YnV"/>
                             <constraint firstItem="qKy-sw-NQm" firstAttribute="top" secondItem="b7C-v4-s1x" secondAttribute="bottom" constant="51" id="KNh-SI-NyQ"/>
@@ -103,14 +118,13 @@
                             <constraint firstItem="KaM-va-J1Y" firstAttribute="top" secondItem="qKy-sw-NQm" secondAttribute="bottom" constant="38" id="Vgs-iG-2EF"/>
                             <constraint firstItem="KaM-va-J1Y" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Xvt-9q-x5H"/>
                             <constraint firstItem="Xbe-lr-1Ql" firstAttribute="top" secondItem="KaM-va-J1Y" secondAttribute="bottom" constant="41" id="a85-ke-QfS"/>
+                            <constraint firstItem="HCL-Jq-ANy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="b0f-hM-UQL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cNU-8u-ZWQ" secondAttribute="trailing" constant="11" id="ej9-Wg-HSt"/>
-                            <constraint firstItem="QhT-wj-K5b" firstAttribute="leading" secondItem="0tA-IH-01i" secondAttribute="trailing" constant="35" id="gp2-Vo-wNq"/>
                             <constraint firstItem="KaM-va-J1Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kql-4h-3pl"/>
                             <constraint firstItem="Xbe-lr-1Ql" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n4f-0K-ArZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="j3e-Zf-IGS" secondAttribute="leading" id="nsc-gl-bH8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="er4-zd-K9d" secondAttribute="trailing" constant="11" id="pgm-0g-cTi"/>
                             <constraint firstItem="0TQ-i2-5Zf" firstAttribute="centerY" secondItem="cNU-8u-ZWQ" secondAttribute="centerY" id="uc5-oa-DsG"/>
-                            <constraint firstItem="cNU-8u-ZWQ" firstAttribute="leading" secondItem="0TQ-i2-5Zf" secondAttribute="trailing" constant="35" id="v95-sw-A3I"/>
                             <constraint firstAttribute="leadingMargin" secondItem="0TQ-i2-5Zf" secondAttribute="leading" id="wLk-UP-r35"/>
                         </constraints>
                     </view>
@@ -121,6 +135,7 @@
                         <outlet property="greenSlider" destination="er4-zd-K9d" id="vXo-oq-69U"/>
                         <outlet property="redSlider" destination="QhT-wj-K5b" id="31z-WD-BY6"/>
                         <outlet property="testString" destination="b7C-v4-s1x" id="ygI-BU-1oW"/>
+                        <outlet property="textField" destination="HCL-Jq-ANy" id="wz7-eF-6kM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

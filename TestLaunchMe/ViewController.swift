@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     var selectedColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
     var selectedString = ""
@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var textField: UITextField!
     
     
     @IBOutlet weak var testString: UILabel!
@@ -33,6 +34,12 @@ class ViewController: UIViewController {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        updateLink()
+        
+        return true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -43,7 +50,7 @@ class ViewController: UIViewController {
         let pasteboard = UIPasteboard.general
         pasteboard.string  = urlApp
         
-        UIApplication.shared.open(URL(string:"http://www.ya.com")!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string:"http://ya.ru")!, options: [:], completionHandler: nil)
     }
     
     @IBAction func testByRemovingPercent(_ sender: Any) {
@@ -58,9 +65,9 @@ class ViewController: UIViewController {
     
     func updateLink() {
         
-        let textColor = String(format: "%.2X%.2X%.2X", redSlider.value*255, greenSlider.value*255, blueSlider.value*255)
+        let textColor = String(format: "%.2x%.2x%.2x", UInt8(redSlider.value*255),  UInt8(greenSlider.value*255),  UInt8(blueSlider.value*255))
         
-        urlApp = "testlaunchme://?color="+textColor+"&text=random%20text"
+        urlApp = "testlaunchme://?color="+textColor+"&text="+textField.text!.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)!
         
         print(urlApp)
         
