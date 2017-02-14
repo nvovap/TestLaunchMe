@@ -13,6 +13,93 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
+    func hexStringToUIColor (_ hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if (cString.characters.count != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        let inputParameters = extractURLParametersFromLaunchURL(url: url)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let view: ViewController = storyboard.instantiateViewController(withIdentifier: "exTest") as! ViewController
+        
+        if let selectColor =  inputParameters["color"], let selectedString = inputParameters["text"] {
+            view.selectedColor = selectColor as! UIColor
+            view.selectedString = selectedString as! String
+            
+            let navigation = window?.rootViewController
+            
+            navigation?.present(view, animated: true, completion: nil)
+            
+        }
+
+        return true
+    }
+    
+    func parseQueryFromString(query: String) -> [String:String] {
+        
+        var dict = [String: String]()
+        
+        let pairs = query.components(separatedBy: "&")
+        
+        for pair in pairs {
+            let elements = pair.components(separatedBy: "=")
+            let key = elements[0].removingPercentEncoding
+            let val = elements[1].removingPercentEncoding
+            
+            dict[key!] = val
+        }
+        
+        return dict
+    }
+    
+    func extractURLParametersFromLaunchURL(url: URL) -> [String:Any] {
+        var queryParameters = [String:Any]()
+        
+        if let queryStr = url.query {
+            let inputs = parseQueryFromString(query: queryStr)
+            
+            if inputs.count > 0 {
+                if let textParamStr = inputs["text"] {
+                    queryParameters["text"] = textParamStr
+                }
+                
+                if let testParamColorStr = inputs["color"] {
+                    queryParameters["color"] = hexStringToUIColor(testParamColorStr)
+                }
+            }
+        }
+        
+        return queryParameters
+    }
+    
+//    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+//        
+//        return true
+//    }
+    
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
